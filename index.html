@@ -21,8 +21,35 @@
     //We wrap our script in document.ready to ensure that all the elements we are trying to manipulate have been loaded before we start trying to grab them.
     $(document).ready(function(){
 
+        $('#show-divs').on('click', function(){
+          $('.content').toggleClass('primary');
+          $('.content').toggleClass('second');
+        });
 
+        //Example 16: .click simplifies the .on syntax
+        $('#add-div').click(function(){
+          $('#main').append('<div class="content"></div>');
+          $( ".content" ).animate(
+            {
+                left: "+=50",
+                top: "+=50",
+                opacity: 0.25
+            },
+            10000,
+            function() {
+                $(".content").html('<h1>Your animation has finished');
+            }
+        );
+        });
 
+        //Example 17: Combining mouseenter and mousleave, we create a function that runs
+        //when the user hovers over an area of the page. 
+        $('.content').on('mouseenter', function(){
+           $(this).html('<img class="gif" src="giphy.gif">');
+        });
+        $('.content').on('mouseleave', function(){
+           $(this).html('');
+        });
     });
     </script>
   </body>
